@@ -17,6 +17,7 @@ public class BrandController {
 
     @PostConstruct
     public void fillDB() {
+        brandRepository.deleteAll();
         brandRepository.save(new Brand("Honda", "Japan", "1948"));
         brandRepository.save(new Brand("Tesla", "USA", "2003"));
         brandRepository.save(new Brand("Dacia", "Romania", "1966"));
