@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface BrandRepository extends MongoRepository<Brand, String> {
     List<Brand> findBrandsByCountry(String country);
+    Brand findBrandsById(String id);
 }
