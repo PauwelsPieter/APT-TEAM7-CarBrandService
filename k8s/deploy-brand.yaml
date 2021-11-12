@@ -56,7 +56,7 @@ spec:
     spec:
       containers:
       - name: brand-service-server
-        image: PauwelsPieter/APT-TEAM7-CarBrandService
+        image: pieterpa/brand-service
         imagePullPolicy: Always
         ports:
           - name: http
