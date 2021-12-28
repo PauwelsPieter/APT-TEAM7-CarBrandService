@@ -22,12 +22,12 @@ public class BrandController {
         brandRepository.save(new Brand("3","Dacia", "Romania", "1966"));
     }
 
-    @GetMapping("/")
+    @GetMapping("/brands")
     public List<Brand> getAll() {
         return brandRepository.findAll();
     }
 
-    @GetMapping("/brands/{country}")
+    @GetMapping("/brands/country/{country}")
     public List<Brand> getBrandsByCountry(@PathVariable String country) {
         return brandRepository.findBrandsByCountry(country);
     }
