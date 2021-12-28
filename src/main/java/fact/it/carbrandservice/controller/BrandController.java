@@ -4,8 +4,10 @@ import fact.it.carbrandservice.model.Brand;
 import fact.it.carbrandservice.repository.BrandRepository;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -51,6 +53,12 @@ public class BrandController {
     @PutMapping("/brands")
     public Brand updateBrand(@RequestBody Brand updatedBrand) {
         Brand retrievedBrand = brandRepository.findBrandsById(updatedBrand.getId());
+
+        if (retrievedBrand == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        }
 
         retrievedBrand.setName(updatedBrand.getName());
         retrievedBrand.setCountry(updatedBrand.getCountry());

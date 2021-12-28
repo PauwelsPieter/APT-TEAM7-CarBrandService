@@ -104,6 +104,14 @@ public class BrandControllerIntegrationTests {
     }
 
     @Test
+    public void givenBrand_whenPutBrand_thenStatusNotFound() throws Exception {
+        Brand updateBrand = new Brand("nonExisting","Updated Brand", "Updated Country", "1111");
+
+        mockMvc.perform(put("/brands").content(mapper.writeValueAsString(updateBrand)).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void givenBrand_whenDeleteBrand_thenStatusOk() throws Exception {
         mockMvc.perform(delete("/brands/{id}", "1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

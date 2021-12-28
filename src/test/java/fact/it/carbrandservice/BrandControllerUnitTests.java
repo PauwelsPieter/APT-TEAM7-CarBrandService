@@ -109,6 +109,14 @@ public class BrandControllerUnitTests {
                 .andExpect(jsonPath("$.foundingYear", is(updateBrand.getFoundingYear())));
     }
 
+    @Test
+    public void givenBrand_whenPutBrand_thenStatusNotFound() throws Exception {
+        Brand updateBrand = new Brand("nonExisting","Updated Brand", "Updated Country", "1111");
+
+        mockMvc.perform(put("/brands").content(mapper.writeValueAsString(updateBrand)).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
     @Test void givenBrand_whenDeleteBrand_thenStatusOk() throws Exception {
         Brand brandToBeDeleted = new Brand("1", "Brand", "Country", "0000");
 
