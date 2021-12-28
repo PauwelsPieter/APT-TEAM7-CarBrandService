@@ -2,9 +2,12 @@ package fact.it.carbrandservice.controller;
 
 import fact.it.carbrandservice.model.Brand;
 import fact.it.carbrandservice.repository.BrandRepository;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -20,6 +23,13 @@ public class BrandController {
         brandRepository.save(new Brand("1", "Honda", "Japan", "1948"));
         brandRepository.save(new Brand("2","Tesla", "USA", "2003"));
         brandRepository.save(new Brand("3","Dacia", "Romania", "1966"));
+    }
+
+    @ApiIgnore
+    @ApiOperation(value = "This method is used to get the Swagger documentation.")
+    @RequestMapping("/")
+    public RedirectView greeting() {
+        return new RedirectView("/swagger-ui.html");
     }
 
     @GetMapping("/brands")
