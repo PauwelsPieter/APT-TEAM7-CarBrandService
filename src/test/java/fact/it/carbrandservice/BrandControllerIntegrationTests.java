@@ -53,7 +53,7 @@ public class BrandControllerIntegrationTests {
 
     @Test
     public void givenBrand_whenGetAllBrands_thenReturnJsonBrands() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/brands"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
@@ -70,7 +70,7 @@ public class BrandControllerIntegrationTests {
 
     @Test
     public void givenBrand_whenGetBrandByCountry_thenReturnJsonBrands() throws Exception {
-        mockMvc.perform(get("/brands/{country}", "Country2"))
+        mockMvc.perform(get("/brands/country/{country}", "Country2"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))

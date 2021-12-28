@@ -47,7 +47,7 @@ public class BrandControllerUnitTests {
         // Given method allows you to assign behaviour to the repository mock
         given(brandRepository.findAll()).willReturn(brands);
 
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/brands"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
@@ -72,7 +72,7 @@ public class BrandControllerUnitTests {
         // Given method allows you to assign behaviour to the repository mock
         given(brandRepository.findBrandsByCountry("Country2")).willReturn(brands);
 
-        mockMvc.perform(get("/brands/{country}", "Country2"))
+        mockMvc.perform(get("/brands/country/{country}", "Country2"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
