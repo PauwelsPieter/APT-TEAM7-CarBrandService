@@ -34,6 +34,13 @@ public class BrandControllerUnitTests {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
+    public void whenGetRoot_thenReturnSwagger() throws Exception {
+        // Test if we get redirected to /swagger-ui.html (status 302)
+        mockMvc.perform(get("/"))
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
     public void givenBrand_whenGetAllBrands_thenReturnJsonBrands() throws Exception {
         Brand brand1 = new Brand("Brand1", "Country1", "0001");
         Brand brand2 = new Brand("Brand2", "Country2", "0002");
